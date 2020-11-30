@@ -1333,8 +1333,7 @@ func (d *Decoder) decodeStructFromMap(name string, dataVal, val reflect.Value) e
 
 			if !rawMapVal.IsValid() {
 				// the struct. Just ignore, unless configured to produce an error.
-				// Pointer fields are treated as optional.
-				if d.config.ErrorUnsetFields && field.Kind() != reflect.Ptr {
+				if d.config.ErrorUnsetFields {
 					errors = appendErrors(errors, fmt.Errorf("unset struct key: %s", fieldName))
 				}
 				continue
